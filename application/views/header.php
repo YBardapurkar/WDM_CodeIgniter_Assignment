@@ -4,13 +4,27 @@
 			<img src="imgsay/favicon.png" alt="logo" />
 		</div>
 		<ul>
-			<li><a href="home">Home</a></li>
-			<li><a href="about">About Us</a></li>
-			<li><a href="blog/">Blog</a></li>
-			<li><a href="buy_from_us">Buy from us</a></li>
-			<li><a href="contact">Contact</a></li>
-			<li><a href="signup">Sign Up</a></li>
-			<li><a href="login">Login</a></li>
+			<li>
+				<?php echo anchor('home', 'Home'); ?>
+			</li>
+			<li>
+				<?php echo anchor('about', 'About Us'); ?>
+			</li>
+			<li>
+				<?php echo anchor('blog/', 'Blog'); ?>
+			</li>
+			<li>
+				<?php echo anchor('buy_from_us', 'Buy from us'); ?>
+			</li>
+			<li>
+				<?php echo anchor('contact', 'Contact'); ?>
+			</li>
+			<li>
+				<?php echo anchor('signup', 'Sign Up'); ?>
+			</li>
+			<li>
+				<?php echo anchor('login', 'Login'); ?>
+			</li>
 		</ul>
 	</nav>
 </header>

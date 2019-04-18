@@ -4,11 +4,21 @@
 			<img src="imgsay/favicon.png" alt="logo" />
 		</div>
 		<ul>
-			<li><a href="dashboard">Dashboard</a></li>
-			<li><a href="about">About Us</a></li>
-			<li><a href="list_of_businesses">Businesses</a></li>
-			<li><a href="list_of_my_businesses">My Businesses</a></li>
-			<li><a href="profile">Profile</a></li>
+			<li>
+				<?php echo anchor('dashboard', 'Dashboard'); ?>
+			</li>
+			<li>
+				<?php echo anchor('about', 'About Us'); ?>
+			</li>
+			<li>
+				<?php echo anchor('list_of_businesses', 'List of Businesses'); ?>
+			</li>
+			<li>
+				<?php echo anchor('list_of_my_businesses', 'List of My Businesses'); ?>
+			</li>
+			<li>
+				<?php echo anchor('profile', 'Profile'); ?>
+			</li>
 			<li>
 				
 				<?php

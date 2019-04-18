@@ -14,4 +14,9 @@ class Home extends CI_Controller {
 			$this->load->view('home_page');
 		}
 	}
+
+	// add email to mailing list
+	public function mailList() {
+		// todo
+	}
 }

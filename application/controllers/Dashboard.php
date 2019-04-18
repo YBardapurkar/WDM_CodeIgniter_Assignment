@@ -11,7 +11,7 @@ class Dashboard extends CI_Controller {
 		if ($this->session->has_userdata('id'))
 			$this->load->view('dashboard_page');
 		else {
-			redirect('home_page');
+			redirect('home');
 		}
 	}
 }

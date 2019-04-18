@@ -27,4 +27,20 @@ class User_model extends CI_Model {
 		$this->db->insert('users', $data);
 	}
 
+	// reset password
+	function password_reset($id, $newPassword) {
+		$this->db->set('password', $newPassword);
+		$this->db->where('id', $id);
+		$this->db->update('users');
+	}
+
+	// login
+	function login($email) {
+		$data = array('email' => $email);
+		$this->db->select('*');
+		$this->db->join('roles', 'users.roleId = roles.id');
+        $this->db->where($data);
+        $query = $this->db->get('users');
+        return $query->row();
+	}
 }

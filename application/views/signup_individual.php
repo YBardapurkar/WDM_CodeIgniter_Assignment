@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				</li>
 			</ul>
-			<p class="center-text">Welcome to the Event registration</p>
+			<p class="center-text">Welcome to the Individual registration</p>
 
 			<?php
 			$data = array('name' => 'firstName', 'placeholder' => 'Enter First Name', 'type' => 'text');

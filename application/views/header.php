@@ -1,30 +1,23 @@
-<header>
-	<nav id="nav">
-		<div class="nav-logo">
-			<img src="imgsay/favicon.png" alt="logo" />
-		</div>
-		<ul>
-			<li>
-				<?php echo anchor('home', 'Home'); ?>
-			</li>
-			<li>
-				<?php echo anchor('about', 'About Us'); ?>
-			</li>
-			<li>
-				<?php echo anchor('blog/', 'Blog'); ?>
-			</li>
-			<li>
-				<?php echo anchor('buy_from_us', 'Buy from us'); ?>
-			</li>
-			<li>
-				<?php echo anchor('contact', 'Contact'); ?>
-			</li>
-			<li>
-				<?php echo anchor('signup', 'Sign Up'); ?>
-			</li>
-			<li>
-				<?php echo anchor('login', 'Login'); ?>
-			</li>
-		</ul>
-	</nav>
-</header>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SayItRight</title>
+	<link rel="stylesheet" href=<?php echo base_url()."css/sayitright.css" ?> />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="shortcut icon" href="imgsay/favicon.png"/>
+</head>
+
+<body>
+	
+	<?php
+	if ($this->session->has_userdata('id')) {
+		if ($this->session->userdata('role') == 'business') {
+			$this->load->view('navbar_business.php');
+		} else {
+			$this->load->view('navbar_auth.php');
+		}
+	} else {
+		$this->load->view('navbar.php');
+	}
+	?>

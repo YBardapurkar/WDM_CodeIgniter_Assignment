@@ -11,16 +11,16 @@
 				<?php echo anchor('about', 'About Us'); ?>
 			</li>
 			<li>
-				<?php echo anchor('list_of_businesses', 'List of Businesses'); ?>
+				<?php echo anchor('events', 'List of Events'); ?>
 			</li>
 			<li>
-				<?php echo anchor('list_of_my_businesses', 'List of My Businesses'); ?>
+				<?php echo anchor('events/my', 'List of My Events'); ?>
 			</li>
 			<li>
 				<?php echo anchor('profile', 'Profile'); ?>
 			</li>
 			<li>
-				
+
 				<?php
 				echo form_open('logout/logout');
 				echo form_submit('logout_submit', 'Logout');

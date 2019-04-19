@@ -1,217 +1,192 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+$this->load->view('header.php');
 ?>
 
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SayItRight</title>
-	<link rel="stylesheet" href=<?php echo base_url()."css/sayitright.css" ?> />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="shortcut icon" href="imgsay/favicon.png"/>
-</head>
+<main>
+	<div id="wrapper">
+		<h1>
 
-<body>
+			<?php
+			echo 'welcome to the '.$this->session->userdata('role').' landing page';
+			?>
 
-	<?php
-	if ($this->session->has_userdata('id')) {
-		if ($this->session->userdata('role') == 'business') {
-			$this->load->view('header_business.php');
-		} else {
-			$this->load->view('header_auth.php');
-		}
-	} else {
-		$this->load->view('header.php');
-	}
-	?>
-
-	<main>
-		<div id="wrapper">
-			<h1>
-
-				<?php
-				echo 'welcome to the '.$this->session->userdata('role').' landing page';
-				?>
-
-			</h1>
-			<div class="dashboard-row">
-				<div class="dashboard-item-1 blue">
-					<div class="top">
-						<i class="fas fa-globe-americas"></i>
-						<p class="count">
-								<!-- <?php
-								// $query = 'SELECT count(*) from events';
-								// $stmt = $db->prepare($query);
-								// $stmt->execute();
-								// $nRows = $stmt->fetchColumn();
-								// echo $nRows;
-								?> -->
-								5
-						</p>
-						<p class="name">activities performed</p>
-					</div>
-					<div class="bottom">
-						<p>Total Events</p>
-					</div>
-				</div>
-				<div class="dashboard-item-1 green">
-					<div class="top">
-						<i class="fas fa-users"></i>
-						<p class="count">
+		</h1>
+		<div class="dashboard-row">
+			<div class="dashboard-item-1 blue">
+				<div class="top">
+					<i class="fas fa-globe-americas"></i>
+					<p class="count">
 							<!-- <?php
-							if ($_SESSION['role'] == 'event') {
-								// $query = 'SELECT count(*) from events where createdBy = :id';
-								// $stmt = $db->prepare($query);
-								// $stmt->execute(array(':id' => $_SESSION['id']));
-								// $nRows = $stmt->fetchColumn();
-							} else {
-								// $query = 'SELECT count(*) from userevents where userevents.userId = :id;';
-								// $stmt = $db->prepare($query);
-								// $stmt->execute(array(':id' => $_SESSION['id']));
-								// $nRows = $stmt->fetchColumn();
-							}
-							echo $nRows;
-							?> -->
-							4
-						</p>
-						<p class="name">activities performed</p>
-					</div>
-					<div class="bottom">
-						<p>My Events</p>
-					</div>
-				</div>
-				<div class="dashboard-item-1 yellow">
-					<div class="top">
-						<i class="fas fa-star"></i>
-						<p class="count">
-							<!-- <?php
-							// $query = 'SELECT count(*) from businesses';
+							// $query = 'SELECT count(*) from events';
 							// $stmt = $db->prepare($query);
 							// $stmt->execute();
 							// $nRows = $stmt->fetchColumn();
 							// echo $nRows;
 							?> -->
-							3
-						</p>
-						<p class="name">activities performed</p>
-					</div>
-					<div class="bottom">
-						<p>Total Businesses</p>
-					</div>
+							5
+					</p>
+					<p class="name">activities performed</p>
 				</div>
-				<div class="dashboard-item-1 grey">
-					<div class="top">
-						<i class="fas fa-trophy"></i>
-						<p class="count">
-							<!-- <?php
-							// $query = 'SELECT count(*) from businesses where createdBy = :id';
+				<div class="bottom">
+					<p>Total Events</p>
+				</div>
+			</div>
+			<div class="dashboard-item-1 green">
+				<div class="top">
+					<i class="fas fa-users"></i>
+					<p class="count">
+						<!-- <?php
+						if ($_SESSION['role'] == 'event') {
+							// $query = 'SELECT count(*) from events where createdBy = :id';
 							// $stmt = $db->prepare($query);
 							// $stmt->execute(array(':id' => $_SESSION['id']));
 							// $nRows = $stmt->fetchColumn();
-							// echo $nRows;
-							?> -->
-							2
-						</p>
-						<p class="name">activities performed</p>
-					</div>
-					<div class="bottom">
-						<p>My Businesses</p>
-					</div>
+						} else {
+							// $query = 'SELECT count(*) from userevents where userevents.userId = :id;';
+							// $stmt = $db->prepare($query);
+							// $stmt->execute(array(':id' => $_SESSION['id']));
+							// $nRows = $stmt->fetchColumn();
+						}
+						echo $nRows;
+						?> -->
+						4
+					</p>
+					<p class="name">activities performed</p>
+				</div>
+				<div class="bottom">
+					<p>My Events</p>
 				</div>
 			</div>
-
-			<div class="dashboard-row">
-				<div class="dashboard-item-2 blue">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
+			<div class="dashboard-item-1 yellow">
+				<div class="top">
+					<i class="fas fa-star"></i>
+					<p class="count">
+						<!-- <?php
+						// $query = 'SELECT count(*) from businesses';
+						// $stmt = $db->prepare($query);
+						// $stmt->execute();
+						// $nRows = $stmt->fetchColumn();
+						// echo $nRows;
+						?> -->
+						3
+					</p>
+					<p class="name">activities performed</p>
 				</div>
-				<div class="dashboard-item-2 grey">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
-				</div>
-				<div class="dashboard-item-2 green">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
-				</div>
-				<div class="dashboard-item-2 red">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
+				<div class="bottom">
+					<p>Total Businesses</p>
 				</div>
 			</div>
-
-			<div class="dashboard-row">
-				<div class="dashboard-item-2 yellow">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
+			<div class="dashboard-item-1 grey">
+				<div class="top">
+					<i class="fas fa-trophy"></i>
+					<p class="count">
+						<!-- <?php
+						// $query = 'SELECT count(*) from businesses where createdBy = :id';
+						// $stmt = $db->prepare($query);
+						// $stmt->execute(array(':id' => $_SESSION['id']));
+						// $nRows = $stmt->fetchColumn();
+						// echo $nRows;
+						?> -->
+						2
+					</p>
+					<p class="name">activities performed</p>
 				</div>
-				<div class="dashboard-item-2 red">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
-				</div>
-				<div class="dashboard-item-2 white">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
-				</div>
-				<div class="dashboard-item-2 black">
-					<div class="head">
-						<p>Header</p>
-					</div>
-					<div class="body">
-						<p>Title card</p>
-						<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
-					</div>
-					<div class="foot"></div>
+				<div class="bottom">
+					<p>My Businesses</p>
 				</div>
 			</div>
 		</div>
-	</main>
-	
-	<?php
-	$this->load->view('footer');
-	?>
 
-</body>
-</html>
+		<div class="dashboard-row">
+			<div class="dashboard-item-2 blue">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 grey">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 green">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 red">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+		</div>
+
+		<div class="dashboard-row">
+			<div class="dashboard-item-2 yellow">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 red">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 white">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+			<div class="dashboard-item-2 black">
+				<div class="head">
+					<p>Header</p>
+				</div>
+				<div class="body">
+					<p>Title card</p>
+					<p>Some quick example text to build on the card title and make up the bulk of the card content</p>
+				</div>
+				<div class="foot"></div>
+			</div>
+		</div>
+	</div>
+</main>
+	
+<?php
+$this->load->view('footer');
+?>

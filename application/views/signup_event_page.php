@@ -12,7 +12,7 @@ $this->load->view('header.php');
 	<div id="wrapper" class="signup-div">
 
 		<?php
-		echo form_open('signup/signup_event');
+		echo form_open('auth/signup_event');
 		?>
 
 		<h2 class="center-heading">Select the type of user</h2>

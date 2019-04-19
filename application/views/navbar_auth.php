@@ -22,7 +22,7 @@
 			<li>
 
 				<?php
-				echo form_open('logout/logout');
+				echo form_open('auth/logout');
 				echo form_submit('logout_submit', 'Logout');
 				echo form_close();
 				?>

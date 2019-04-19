@@ -12,7 +12,7 @@ $this->load->view('header.php');
 	<div id="wrapper" class="login">
 
 		<?php
-		echo form_open('login/login');
+		echo form_open('auth/login');
 
 		echo form_input(array('name' => 'email', 'type' => 'email', 'placeholder' => 'Enter Email', 'required' => true));
 		echo '<br>';

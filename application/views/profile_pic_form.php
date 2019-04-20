@@ -14,7 +14,7 @@ echo form_open_multipart('profile/upload_pic', 'id="profile-photo-form", class="
 	} else {
 	?>
 	
-		<img id="newProfilePicImage" src=<?php echo base_url()."imgsay/user.jpg" ?> >
+		<img id="newProfilePicImage" src=<?php echo base_url() ?>"imgsay/user.jpg" >
 
 	<?php
 	}

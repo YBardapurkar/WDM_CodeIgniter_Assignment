@@ -1,7 +1,7 @@
 <header>
 	<nav id="nav">
 		<div class="nav-logo">
-			<img src="imgsay/favicon.png" alt="logo" />
+			<img src=<?php echo base_url()."imgsay/favicon.png" ?> alt="logo" />
 		</div>
 		<ul>
 			<li>

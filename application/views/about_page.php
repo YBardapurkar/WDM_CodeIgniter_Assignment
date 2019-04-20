@@ -17,7 +17,7 @@ $this->load->view('header.php');
 				<p>Is an application for everyone. It is the first step to a good relationship. It is about identity, about the importance of my name, my culture. If you want to, I will help you to Say It Right, so that you can address me correctly.</p>
 			</div>
 			<figure class="about-right">
-				<img src="imgsay/about.png">
+				<img src=<?php echo base_url()."imgsay/about.png" ?>>
 				<figcaption></figcaption>
 			</figure>
 		</div>

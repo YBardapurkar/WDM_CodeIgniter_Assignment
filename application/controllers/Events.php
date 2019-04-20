@@ -7,35 +7,80 @@ class Events extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		$this->load->model('Event_model');
+		$this->load->model('Events_model');
 	}
 
 	// load 'list of events'
 	public function index() {
-		$rows = $this->Event_model->get_all_events();
-		$data = array("rows" => $rows);
-		$this->load->view('list_of_events_page', $data);
+		if (!$this->session->has_userdata('role')){
+			redirect('login');
+			return;
+		} 
+		if ($this->session->userdata('role') == 'business') {
+			redirect('businesses');
+			return;
+		} else {
+			$rows = $this->Events_model->get_all_events();
+			$data = array('rows' => $rows);
+			$this->load->view('list_of_events_page', $data);
+		}
 	}
 
 	// load 'list of my events'
 	public function my() {
-		$this->load->view('list_of_my_events_page');
+		if (!$this->session->has_userdata('role')){
+			redirect('login');
+			return;
+		} 
+		// events for business - none
+		if ($this->session->userdata('role') == 'business') {
+			redirect('businesses/my');
+			return;
+		} 
+		// events for individual
+		else if ($this->session->userdata('role') == 'individual') {
+			$rows = $this->Events_model->get_events_of_individual($this->session->userdata('id'));
+			$data = array('rows' => $rows);
+			$this->load->view('list_of_my_events_page', $data);
+		} 
+		// events for event
+		else if ($this->session->userdata('role') == 'event') {
+			$rows = $this->Events_model->get_events_of_event($this->session->userdata('id'));
+			$data = array('rows' => $rows);
+			$this->load->view('list_of_my_events_page', $data);
+		}
 	}
 
-	// signup individual
-	public function signup_individual() {
-		$form_data = $this->input->post();
+	// confirm event (only for individuals)
+	public function confirm_event() {
+		$eventId = $this->input->post("eventId");
+		if ($this->session->userdata('role') != 'individual') {
+			redirect('events');
+			return;
+		}
 
-		$firstName = $this->input->post("firstName");
-		$lastName = $this->input->post("lastName");
-		$school = $this->input->post("school");
-		$placeOfWork = $this->input->post("placeOfWork");
-		$email = $this->input->post("email");
-		$password = $this->input->post("password");
+		$userId = $this->session->userdata('id');
 
-		$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+		if ($this->Events_model->check_if_confirmed($userId, $eventId)) {
+			echo "sdfsafsadf";
+		} else {
+			$this->Events_model->confirm_event($userId, $eventId);
+			redirect('events/my');
+		}
+	}
 
-		$this->User_model->signup_individual($firstName, $lastName, $school, $placeOfWork, $email, $hashed_password);
+	// remove event (only for individuals)
+	public function remove_event() {
+		$eventId = $this->input->post("eventId");
+		if ($this->session->userdata('role') != 'individual') {
+			redirect('events');
+			return;
+		}
+
+		$userId = $this->session->userdata('id');
+		
+		$this->Events_model->remove_event($userId, $eventId);
+		redirect('events/my');
 	}
 
 }

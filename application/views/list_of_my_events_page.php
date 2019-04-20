@@ -6,7 +6,7 @@ $this->load->view('header.php');
 
 <main>
 	<div id="wrapper">
-		<h2>List of Events</h2>
+		<h2>List of My Events</h2>
 
 		<?php
 		$numEvents = count($rows, COUNT_NORMAL);
@@ -48,11 +48,18 @@ $this->load->view('header.php');
 					<td>
 
 						<?php
+
 						if ($this->session->userdata('role') == 'individual') {
-							echo form_open('events/confirm_event');
-							echo form_hidden('eventId', $row->id);
-							echo form_submit('event_confirm_submit', 'Confirm', 'class="button-color"');
+							echo form_open('events/remove_event');
+							echo form_hidden('eventId', $row->eventId);
+							echo form_submit('event_remove_submit', 'Remove', 'class="button-color"');
 							echo form_close();
+						} else if ($this->session->userdata('role') == 'event') {
+							echo '<a class="button-color edit-event" href="event_edit.php?eventId='.$row->id.'">Edit</a>
+								<form action="php/events.controller.php" method="post">
+									<input type="hidden" name="eventId" value="'.$row['id'].'" />
+									<button class="button-color" type="submit" name="delete_event_submit">Delete</button>
+								</form>';
 						}
 						?>
 

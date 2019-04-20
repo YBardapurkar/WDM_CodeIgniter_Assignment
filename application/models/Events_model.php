@@ -56,4 +56,10 @@ class Events_model extends CI_Model {
   		$this->db->delete('userevents');
 	}
 
+	// add event to table
+	function add_event($eventName, $eventDate, $eventVenue, $eventDescription) {
+		$data = array('eventName' => $eventName, 'eventDate' => $eventDate, 'eventVenue' => $eventVenue, 'eventDescription' => $eventDescription);
+		$this->db->insert('events', $data);
+	}
+
 }

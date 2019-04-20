@@ -15,7 +15,7 @@ class Events extends CI_Controller {
 		if (!$this->session->has_userdata('role')){
 			redirect('login');
 			return;
-		} 
+		}
 		if ($this->session->userdata('role') == 'business') {
 			redirect('businesses');
 			return;
@@ -51,6 +51,19 @@ class Events extends CI_Controller {
 		}
 	}
 
+	// load 'add event' page
+	public function new() {
+		if (!$this->session->has_userdata('role')){
+			redirect('login');
+			return;
+		}
+		if ($this->session->userdata('role') != 'event') {
+			redirect('login');
+			return;
+		}
+		$this->load->view('event_add_page');
+	}
+
 	// confirm event (only for individuals)
 	public function confirm_event() {
 		$eventId = $this->input->post("eventId");
@@ -62,7 +75,7 @@ class Events extends CI_Controller {
 		$userId = $this->session->userdata('id');
 
 		if ($this->Events_model->check_if_confirmed($userId, $eventId)) {
-			echo "sdfsafsadf";
+			redirect('events');
 		} else {
 			$this->Events_model->confirm_event($userId, $eventId);
 			redirect('events/my');
@@ -78,8 +91,24 @@ class Events extends CI_Controller {
 		}
 
 		$userId = $this->session->userdata('id');
-		
+
 		$this->Events_model->remove_event($userId, $eventId);
+		redirect('events/my');
+	}
+
+	// add new event (only for event)
+	public function add_event() {
+		if ($this->session->userdata('role') != 'event') {
+			redirect('events/my');
+			return;
+		}
+
+		$eventName = $this->input->post("eventName");
+		$eventDate = $this->input->post("eventDate");
+		$eventVenue = $this->input->post("eventVenue");
+		$eventDescription = $this->input->post("eventDescription");
+
+		$this->Events_model->add_event($eventName, $eventDate, $eventVenue, $eventDescription);
 		redirect('events/my');
 	}
 

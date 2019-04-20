@@ -15,9 +15,17 @@ $this->load->view('header.php');
 					<figure>
 						<?php
 						if (file_exists($row->profilePicture)) {
-							echo '<img src="'.$row->profilePicture.'">'; 
+						?>
+							
+							<img src=<?php echo base_url().$row->profilePicture ?> >
+
+						<?php
 						} else {
-							echo '<img src="imgsay/user.jpg">';
+						?>
+						
+							<img src=<?php echo base_url()."imgsay/user.jpg" ?> >
+
+						<?php
 						}
 						?>
 						<figcaption></figcaption>
@@ -48,22 +56,15 @@ $this->load->view('header.php');
 		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
-			<form id="profile-photo-form" class="profile-photo-form" action="php/profile.controller.php" method="post" enctype="multipart/form-data">
-				<figure>
-					<?php
-					if (file_exists($row->profilePicture)) {
-						echo '<img id="newProfilePicImage" src="'.$row->profilePicture.'">'; 
-					} else {
-						echo '<img id="newProfilePicImage" src="imgsay/user.jpg">';
-					}
-					?>
-					<figcaption></figcaption>
-				</figure>
-				<input type="file" name="newProfilePic" id="newProfilePic">
-				<input type="submit" name="profile_photo_submit" value="Change Photo" class="button-color">
-			</form>
+
+			<?php
+			$this->load->view('profile_pic_form');
+			?>
+
 		</div>
 	</div>
+	<script type="text/javascript" src=<?php echo base_url()."js/profile.js" ?>></script>
+
 </main>
 
 <?php

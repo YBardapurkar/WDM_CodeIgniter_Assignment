@@ -78,4 +78,12 @@ class User_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('users');
 	}
+
+	// update profile pic
+	function update_profile_pic($id, $imageUrl) {
+		$this->db->set('profilePicture', $imageUrl);
+		$this->db->where('id', $id);
+		$this->db->update('users');
+	}
+
 }

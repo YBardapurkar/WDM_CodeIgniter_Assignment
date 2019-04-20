@@ -57,7 +57,8 @@ header a {
 	text-decoration: none;
 }
 
-header ul li button[type="submit"] {
+header ul li button[type="submit"],
+header ul li input[type="submit"] {
 	background: none;
 	border: none;
 	font-size: 0.7em;

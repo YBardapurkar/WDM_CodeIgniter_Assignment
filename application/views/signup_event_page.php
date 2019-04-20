@@ -12,7 +12,7 @@ $this->load->view('header.php');
 	<div id="wrapper" class="signup-div">
 
 		<?php
-		echo form_open('auth/signup_event');
+		echo form_open('auth/signup_event', 'class="signup-form" name="signup_event_form"');
 		?>
 
 		<h2 class="center-heading">Select the type of user</h2>
@@ -44,21 +44,17 @@ $this->load->view('header.php');
 		<?php
 		$data = array('name' => 'firstName', 'placeholder' => 'Enter First Name', 'type' => 'text');
 		echo form_input($data);
-		echo '<br>';
 
 		$data = array('name' => 'lastName', 'placeholder' => 'Enter Last Name', 'type' => 'text');
 		echo form_input($data);
-		echo '<br>';
 
 		$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'email');
 		echo form_input($data);
-		echo '<br>';
 
 		$data = array('name' => 'password', 'placeholder' => 'Enter Password', 'type' => 'password');
 		echo form_input($data);
-		echo '<br>';
 
-		echo form_submit('signup_event_submit', 'Sign Up');
+		echo form_submit('signup_event_submit', 'Sign Up', 'class="button-color"');
 
 		echo form_close();
 		?>

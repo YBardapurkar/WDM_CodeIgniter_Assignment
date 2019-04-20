@@ -21,7 +21,6 @@ $this->load->view('header.php');
 		echo form_open('home/mailList');
 
 		echo form_input(array('name' => 'email', 'type' => 'email'));
-		echo '<br>';
 
 		echo form_submit('newsletter_submit', 'Subscribe');
 		echo form_close();

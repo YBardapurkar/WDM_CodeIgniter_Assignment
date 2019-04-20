@@ -13,7 +13,7 @@ $this->load->view('header.php');
 		<h2 class="center-heading">Contact Us</h2>
 
 		<?php
-		echo form_open('contact/feedback');
+		echo form_open('contact/feedback', 'class="contact-us-form" name="contact_form"');
 		?>
 
 		<div class="row">
@@ -22,19 +22,15 @@ $this->load->view('header.php');
 				<?php
 				$data = array('type' => 'text', 'name' => 'firstName', 'placeholder' => 'Enter First Name');
 				echo form_input($data);
-				echo '<br>';
 
 				$data = array('type' => 'text', 'name' => 'lastName', 'placeholder' => 'Enter Last Name');
 				echo form_input($data);
-				echo '<br>';
 
 				$data = array('type' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email');
 				echo form_input($data);
-				echo '<br>';
 
 				$data = array('type' => 'text', 'name' => 'phone', 'placeholder' => 'Enter Phone');
 				echo form_input($data);
-				echo '<br>';
 				?>
 
 			</div>
@@ -43,9 +39,8 @@ $this->load->view('header.php');
 				<?php
 				$data = array('name' => 'message', 'placeholder' => 'Enter Message', 'rows' => 3, 'cols' => 50 );
 				echo form_textarea($data);
-				echo '<br>';
 
-				echo form_submit('contact_submit', 'Submit');
+				echo form_submit('contact_submit', 'Submit', 'class="button-color"');
 				?>
 
 			</div>

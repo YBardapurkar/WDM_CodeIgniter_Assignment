@@ -61,12 +61,27 @@ class Events extends CI_Controller {
 			redirect('login');
 			return;
 		}
-		$this->load->view('event_add_page');
+		$this->load->view('events_add_page');
+	}
+
+	// load 'edit event' page
+	public function update($eventId) {
+		if (!$this->session->has_userdata('role')){
+			redirect('login');
+			return;
+		}
+		if ($this->session->userdata('role') != 'event') {
+			redirect('login');
+			return;
+		}
+		$event = $this->Events_model->get_event($eventId);
+		$data = array('row' => $event);
+		$this->load->view('events_update_page', $data);
 	}
 
 	// confirm event (only for individuals)
 	public function confirm_event() {
-		$eventId = $this->input->post("eventId");
+		$eventId = $this->input->post('eventId');
 		if ($this->session->userdata('role') != 'individual') {
 			redirect('events');
 			return;
@@ -84,7 +99,7 @@ class Events extends CI_Controller {
 
 	// remove event (only for individuals)
 	public function remove_event() {
-		$eventId = $this->input->post("eventId");
+		$eventId = $this->input->post('eventId');
 		if ($this->session->userdata('role') != 'individual') {
 			redirect('events');
 			return;
@@ -103,12 +118,34 @@ class Events extends CI_Controller {
 			return;
 		}
 
-		$eventName = $this->input->post("eventName");
-		$eventDate = $this->input->post("eventDate");
-		$eventVenue = $this->input->post("eventVenue");
-		$eventDescription = $this->input->post("eventDescription");
+		$eventName = $this->input->post('eventName');
+		$eventDate = $this->input->post('eventDate');
+		$eventVenue = $this->input->post('eventVenue');
+		$eventDescription = $this->input->post('eventDescription');
 
-		$this->Events_model->add_event($eventName, $eventDate, $eventVenue, $eventDescription);
+		$createdBy = $this->session->userdata('id');
+		$timestamp = strtotime($eventDate);
+
+		$this->Events_model->add_event($eventName, date('Y-m-d', $timestamp), $eventVenue, $eventDescription, $createdBy);
+		redirect('events/my');
+	}
+
+	// update event (only for event)
+	public function update_event() {
+		$eventId = $this->input->post('eventId');
+		if ($this->session->userdata('role') != 'event') {
+			redirect('events/my');
+			return;
+		}
+
+		$eventName = $this->input->post('eventName');
+		$eventDate = $this->input->post('eventDate');
+		$eventVenue = $this->input->post('eventVenue');
+		$eventDescription = $this->input->post('eventDescription');
+
+		$timestamp = strtotime($eventDate);
+
+		$this->Events_model->update_event($eventId, $eventName, date('Y-m-d', $timestamp), $eventVenue, $eventDescription);
 		redirect('events/my');
 	}
 

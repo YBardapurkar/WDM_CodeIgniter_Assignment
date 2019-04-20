@@ -9,7 +9,7 @@ $this->load->view('header.php');
 		<h2 class="center-heading">Add New Event</h2>
 
 		<?php
-		echo form_open('events/new', 'class="contact-us-form" name="event_add_form"');
+		echo form_open('events/add_event', 'class="contact-us-form" name="event_add_form"');
 		?>
 			
 		<div class="row">
@@ -22,7 +22,7 @@ $this->load->view('header.php');
 				$data = array('type' => 'text', 'name' => 'eventDate', 'placeholder' => 'Enter Event Date');
 				echo form_input($data);
 
-				$data = array('type' => 'email', 'name' => 'eventVenue', 'placeholder' => 'Enter Event Venue');
+				$data = array('type' => 'text', 'name' => 'eventVenue', 'placeholder' => 'Enter Event Venue');
 				echo form_input($data);
 				?>
 
@@ -33,7 +33,7 @@ $this->load->view('header.php');
 				$data = array('name' => 'eventDescription', 'placeholder' => 'Enter Description', 'rows' => 3 );
 				echo form_textarea($data);
 
-				echo form_submit('contact_submit', 'Submit', 'class="button-color"');
+				echo form_submit('event_new_submit', 'Submit', 'class="button-color"');
 				?>
 
 			</div>

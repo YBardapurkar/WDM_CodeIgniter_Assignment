@@ -16,6 +16,14 @@ class Events_model extends CI_Model {
 		return $query->result();
 	}
 
+	// get event by id
+	function get_event($eventId) {
+		$data = array('id' => $eventId);
+		$this->db->select('*');
+		$query = $this->db->get_where('events', $data);
+		return $query->row();
+	}
+
 	// get events of user
 	function get_events_of_individual($userId) {
 		$data = array('userevents.userId' => $userId);
@@ -25,7 +33,7 @@ class Events_model extends CI_Model {
 		return $query->result();
 	}
 
-	// get events of user
+	// get events of event
 	function get_events_of_event($userId) {
 		$data = array('createdBy' => $userId);
 		$this->db->select('*');
@@ -57,9 +65,19 @@ class Events_model extends CI_Model {
 	}
 
 	// add event to table
-	function add_event($eventName, $eventDate, $eventVenue, $eventDescription) {
-		$data = array('eventName' => $eventName, 'eventDate' => $eventDate, 'eventVenue' => $eventVenue, 'eventDescription' => $eventDescription);
+	function add_event($eventName, $eventDate, $eventVenue, $eventDescription, $createdBy) {
+		$data = array('name' => $eventName, 'eventDate' => $eventDate, 'venue' => $eventVenue, 'description' => $eventDescription, 'createdBy' => $createdBy);
 		$this->db->insert('events', $data);
+	}
+
+	// update event
+	function update_event($id, $eventName, $eventDate, $eventVenue, $eventDescription) {
+		$this->db->set('name', $eventName);
+		$this->db->set('eventDate', $eventDate);
+		$this->db->set('venue', $eventVenue);
+		$this->db->set('description', $eventDescription);
+		$this->db->where('id', $id);
+		$this->db->update('events');
 	}
 
 }

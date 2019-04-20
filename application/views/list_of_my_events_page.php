@@ -55,7 +55,8 @@ $this->load->view('header.php');
 							echo form_submit('event_remove_submit', 'Remove', 'class="button-color"');
 							echo form_close();
 						} else if ($this->session->userdata('role') == 'event') {
-							// echo '<a class="button-color edit-event" href="event_edit.php?eventId='.$row->id.'">Edit</a>'
+							echo anchor('events/update/'.$row->id, 'Edit', 'class="button-color edit-event"');
+
 							echo form_open('events/delete_event');
 							echo form_hidden('eventId', $row->id);
 							echo form_submit('event_delete_submit', 'Delete', 'class="button-color"');

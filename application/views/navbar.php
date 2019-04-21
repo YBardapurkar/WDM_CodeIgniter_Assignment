@@ -14,7 +14,7 @@
 				<?php echo anchor('blog/', 'Blog'); ?>
 			</li>
 			<li>
-				<?php echo anchor('buy_from_us', 'Buy from us'); ?>
+				<?php echo anchor('store', 'Buy from us'); ?>
 			</li>
 			<li>
 				<?php echo anchor('contact', 'Contact'); ?>

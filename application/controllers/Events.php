@@ -10,6 +10,7 @@ class Events extends CI_Controller {
 		$this->load->model('Events_model');
 	}
 
+	// GET
 	// load 'list of events'
 	public function index() {
 		if (!$this->session->has_userdata('role')){
@@ -26,6 +27,7 @@ class Events extends CI_Controller {
 		}
 	}
 
+	// GET
 	// load 'list of my events'
 	public function my() {
 		if (!$this->session->has_userdata('role')){
@@ -51,6 +53,7 @@ class Events extends CI_Controller {
 		}
 	}
 
+	// GET
 	// load 'add event' page
 	public function new() {
 		if (!$this->session->has_userdata('role')){
@@ -64,6 +67,7 @@ class Events extends CI_Controller {
 		$this->load->view('events_add_page');
 	}
 
+	// GET
 	// load 'edit event' page
 	public function update($eventId) {
 		if (!$this->session->has_userdata('role')){
@@ -79,6 +83,7 @@ class Events extends CI_Controller {
 		$this->load->view('events_update_page', $data);
 	}
 
+	// POST
 	// confirm event (only for individuals)
 	public function confirm_event() {
 		$eventId = $this->input->post('eventId');
@@ -97,6 +102,7 @@ class Events extends CI_Controller {
 		}
 	}
 
+	// POST
 	// remove event (only for individuals)
 	public function remove_event() {
 		$eventId = $this->input->post('eventId');
@@ -111,6 +117,7 @@ class Events extends CI_Controller {
 		redirect('events/my');
 	}
 
+	// POST
 	// add new event (only for event)
 	public function add_event() {
 		if ($this->session->userdata('role') != 'event') {
@@ -130,6 +137,7 @@ class Events extends CI_Controller {
 		redirect('events/my');
 	}
 
+	// POST
 	// update event (only for event)
 	public function update_event() {
 		$eventId = $this->input->post('eventId');
@@ -149,4 +157,16 @@ class Events extends CI_Controller {
 		redirect('events/my');
 	}
 
+	// POST
+	// delete event (only for event)
+	public function delete_event() {
+		$eventId = $this->input->post('eventId');
+		if ($this->session->userdata('role') != 'event') {
+			redirect('events/my');
+			return;
+		}
+
+		$this->Events_model->delete_event($eventId);
+		redirect('events/my');
+	}
 }

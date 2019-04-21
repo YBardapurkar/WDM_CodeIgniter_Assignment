@@ -61,7 +61,7 @@ class Events_model extends CI_Model {
 	function remove_event($userId, $eventId) {
 		$data = array('userId' => $userId, 'eventId' => $eventId);
 		$this->db->where($data);
-  		$this->db->delete('userevents');
+		$this->db->delete('userevents');
 	}
 
 	// add event to table
@@ -78,6 +78,23 @@ class Events_model extends CI_Model {
 		$this->db->set('description', $eventDescription);
 		$this->db->where('id', $id);
 		$this->db->update('events');
+	}
+
+	// delete event from events and userevents
+	function delete_event($eventId) {
+		$this->db->trans_start();
+
+		$data = array('eventId' => $eventId);
+		$this->db->where($data);
+		$this->db->delete('userevents');
+
+		$data = array('id' => $eventId);
+		$this->db->where($data);
+		$this->db->delete('events');
+
+		$this->db->trans_complete();
+
+		return ($this->db->trans_status() === TRUE);
 	}
 
 }

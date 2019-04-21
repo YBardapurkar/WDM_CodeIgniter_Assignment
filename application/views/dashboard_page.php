@@ -18,14 +18,7 @@ $this->load->view('header.php');
 				<div class="top">
 					<i class="fas fa-globe-americas"></i>
 					<p class="count">
-							<!-- <?php
-							// $query = 'SELECT count(*) from events';
-							// $stmt = $db->prepare($query);
-							// $stmt->execute();
-							// $nRows = $stmt->fetchColumn();
-							// echo $nRows;
-							?> -->
-							5
+						<?php echo $totalEvents ?>
 					</p>
 					<p class="name">activities performed</p>
 				</div>
@@ -37,21 +30,7 @@ $this->load->view('header.php');
 				<div class="top">
 					<i class="fas fa-users"></i>
 					<p class="count">
-						<!-- <?php
-						if ($_SESSION['role'] == 'event') {
-							// $query = 'SELECT count(*) from events where createdBy = :id';
-							// $stmt = $db->prepare($query);
-							// $stmt->execute(array(':id' => $_SESSION['id']));
-							// $nRows = $stmt->fetchColumn();
-						} else {
-							// $query = 'SELECT count(*) from userevents where userevents.userId = :id;';
-							// $stmt = $db->prepare($query);
-							// $stmt->execute(array(':id' => $_SESSION['id']));
-							// $nRows = $stmt->fetchColumn();
-						}
-						echo $nRows;
-						?> -->
-						4
+						<?php echo $events ?>
 					</p>
 					<p class="name">activities performed</p>
 				</div>
@@ -63,14 +42,7 @@ $this->load->view('header.php');
 				<div class="top">
 					<i class="fas fa-star"></i>
 					<p class="count">
-						<!-- <?php
-						// $query = 'SELECT count(*) from businesses';
-						// $stmt = $db->prepare($query);
-						// $stmt->execute();
-						// $nRows = $stmt->fetchColumn();
-						// echo $nRows;
-						?> -->
-						3
+						<?php echo $totalBusinesses ?>
 					</p>
 					<p class="name">activities performed</p>
 				</div>
@@ -82,14 +54,7 @@ $this->load->view('header.php');
 				<div class="top">
 					<i class="fas fa-trophy"></i>
 					<p class="count">
-						<!-- <?php
-						// $query = 'SELECT count(*) from businesses where createdBy = :id';
-						// $stmt = $db->prepare($query);
-						// $stmt->execute(array(':id' => $_SESSION['id']));
-						// $nRows = $stmt->fetchColumn();
-						// echo $nRows;
-						?> -->
-						2
+						<?php echo $businesses ?>
 					</p>
 					<p class="name">activities performed</p>
 				</div>

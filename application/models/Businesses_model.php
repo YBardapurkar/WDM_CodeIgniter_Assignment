@@ -53,4 +53,19 @@ class Businesses_model extends CI_Model {
 		$this->db->delete('businesses');
 	}
 
+	// number of businesses of business
+	function count_businesses_of_business($userId) {
+		$data = array('createdBy' => $userId);
+		$this->db->select('*');
+		$query = $this->db->get_where('businesses', $data);
+		return $query->num_rows();
+	}
+
+	// number of all businesses
+	function count_all_businesses() {
+		$this->db->select('*');
+		$query = $this->db->get('businesses');
+		return $query->num_rows();
+	}
+
 }

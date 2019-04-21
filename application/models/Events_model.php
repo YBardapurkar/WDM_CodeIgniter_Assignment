@@ -53,7 +53,7 @@ class Events_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->where($data);
 		$query = $this->db->get('userevents');
-		$result = $query->num_rows();	
+		$result = $query->num_rows();
 		return $result > 0;
 	}
 
@@ -95,6 +95,30 @@ class Events_model extends CI_Model {
 		$this->db->trans_complete();
 
 		return ($this->db->trans_status() === TRUE);
+	}
+
+	// number of events of individual
+	function count_events_of_individual($userId) {
+		$data = array('userevents.userId' => $userId);
+		$this->db->select('*');
+		$this->db->join('userevents', 'events.id = userevents.eventId');
+		$query = $this->db->get_where('events', $data);
+		return $query->num_rows();
+	}
+
+	// number of events of event
+	function count_events_of_event($userId) {
+		$data = array('createdBy' => $userId);
+		$this->db->select('*');
+		$query = $this->db->get_where('events', $data);
+		return $query->num_rows();
+	}
+
+	// number of all events
+	function count_all_events() {
+		$this->db->select('*');
+		$query = $this->db->get('events');
+		return $query->num_rows();
 	}
 
 }

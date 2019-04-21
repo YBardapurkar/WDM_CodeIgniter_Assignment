@@ -78,7 +78,7 @@ $this->load->view('header.php');
 		} else {
 			echo "No events found";
 		}
-		echo anchor('events/new', 'Add New Event', 'class="button-color"');
+		echo anchor('events/new', 'Add New Event', 'class="button-color add-new-event"');
 		?>
 
 	</div>

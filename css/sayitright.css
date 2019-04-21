@@ -628,7 +628,8 @@ a.edit-event {
 	text-transform: uppercase;
 }
 
-.list-of-events form button {
+.list-of-events form button,
+.list-of-events form input[type="submit"] {
 	display: block;
     margin: 0 auto;
     padding: 7px;

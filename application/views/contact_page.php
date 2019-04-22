@@ -5,6 +5,19 @@ $this->load->view('header.php');
 ?>
 
 <main>
+
+	<?php
+	$data = array();
+	if (null != validation_errors()) {
+		$data['error'] = validation_errors();
+	}
+	$this->load->view('error_modal', $data);
+	if (null != validation_errors()) {
+		echo '<script type="text/javascript"> document.getElementById("error-modal").style.display = "block"; </script>';
+		// echo '<script type="text/javascript"> alert("'.validation_errors().'"); </script>';
+	}
+	?>
+
 	<div class="banner-top">
 		<p>Home <i class="fas fa-arrow-right"></i> Contact</p>
 		<h1>Contact Us</h1>
@@ -20,25 +33,20 @@ $this->load->view('header.php');
 			<div class="column">
 
 				<?php
-				$data = array('type' => 'text', 'name' => 'firstName', 'placeholder' => 'Enter First Name');
-				echo form_input($data);
+				echo form_input(array('type' => 'text', 'name' => 'firstName', 'placeholder' => 'Enter First Name', 'value' => set_value('firstName') ));
 
-				$data = array('type' => 'text', 'name' => 'lastName', 'placeholder' => 'Enter Last Name');
-				echo form_input($data);
+				echo form_input(array('type' => 'text', 'name' => 'lastName', 'placeholder' => 'Enter Last Name', 'value' => set_value('lastName') ));
 
-				$data = array('type' => 'email', 'name' => 'email', 'placeholder' => 'Enter Email');
-				echo form_input($data);
+				echo form_input(array('type' => 'text', 'name' => 'email', 'placeholder' => 'Enter Email', 'value' => set_value('email') ));
 
-				$data = array('type' => 'text', 'name' => 'phone', 'placeholder' => 'Enter Phone');
-				echo form_input($data);
+				echo form_input(array('type' => 'text', 'name' => 'phone', 'placeholder' => 'Enter Phone', 'value' => set_value('phone') ));
 				?>
 
 			</div>
 			<div class="column">
 
 				<?php
-				$data = array('name' => 'message', 'placeholder' => 'Enter Message', 'rows' => 3, 'cols' => 50 );
-				echo form_textarea($data);
+				echo form_textarea(array('name' => 'message', 'placeholder' => 'Enter Message', 'rows' => 3, 'cols' => 50, 'value' => set_value('message') ));
 
 				echo form_submit('contact_submit', 'Submit', 'class="button-color"');
 				?>

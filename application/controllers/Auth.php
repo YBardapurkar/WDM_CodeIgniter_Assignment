@@ -38,8 +38,15 @@ class Auth extends CI_Controller {
 			$this->session->set_userdata('firstName', $user->firstName);
 			$this->session->set_userdata('lastName', $user->lastName);
 
-			redirect('home');
+			$this->session->set_flashdata('success', '<p>Logged in</p>');
+
+			redirect('dashboard');
+			return;
 		}
+
+		$this->session->set_flashdata('error', '<p>Invalid Username/Password</p>');
+		redirect('login');
+		return;
 	}
 
 	// GET, POST

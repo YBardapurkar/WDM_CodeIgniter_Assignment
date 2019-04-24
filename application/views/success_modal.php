@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	body {font-family: Arial, Helvetica, sans-serif;}
 
 	/* The Modal (background) */
-	.error-modal {
+	.success-modal {
 		display: none; /* Hidden by default */
 		position: fixed; /* Stay in place */
 		z-index: 1; /* Sit on top */
@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 
 	/* Modal Content */
-	.error-modal-content {
+	.success-modal-content {
 		background-color: #fefefe;
 		margin: auto;
 		padding: 20px;
@@ -30,43 +30,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 
 	/* The Close Button */
-	.error-modal-close {
+	.success-modal-close {
 		color: #aaaaaa;
 		float: right;
 		font-size: 28px;
 		font-weight: bold;
 	}
 
-	.error-modal-close:hover,
-	.error-modal-close:focus {
+	.success-modal-close:hover,
+	.success-modal-close:focus {
 		color: #000;
 		text-decoration: none;
 		cursor: pointer;
 	}
 </style>
-</head>
 <body>
 	<!-- The Modal -->
-	<div id="error-modal" class="error-modal">
+	<div id="success-modal" class="success-modal">
 
 		<!-- Modal content -->
-		<div class="error-modal-content">
-			<span id="error-modal-close" class="error-modal-close">&times;</span>
-			<p><?php echo $error ?></p>
+		<div class="success-modal-content">
+			<span id="success-modal-close" class="success-modal-close">&times;</span>
+			<p><?php echo $success ?></p>
 		</div>
 
 	</div>
 
 	<script>
 // Get the modal
-var modal = document.getElementById('error-modal');
+var modal = document.getElementById('success-modal');
 
 // Get the <span> element that closes the modal
-var span = document.getElementById("error-modal-close");
+var span = document.getElementById('success-modal-close');
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
 	modal.style.display = "none";
+}
+
+function modal_open() {
+	modal.style.display = "block";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -78,4 +81,3 @@ window.onclick = function(event) {
 </script>
 
 </body>
-</html>

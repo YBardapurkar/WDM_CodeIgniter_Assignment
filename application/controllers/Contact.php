@@ -38,6 +38,8 @@ class Contact extends CI_Controller {
 
 		$this->Contact_model->enter_feedback($firstName, $lastName, $email, $phone, $message);
 
+		$this->session->set_flashdata('success', '<p>Your message has been submitted</p>');
+
 		redirect('contact');
 	}
 

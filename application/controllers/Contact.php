@@ -9,11 +9,13 @@ class Contact extends CI_Controller {
 		$this->load->model('Contact_model');
 	}
 
+	// GET
 	// default, load view
 	public function index() {
 		$this->load->view('contact_page');
 	}
 
+	// POST
 	// add feedback to table
 	public function feedback() {
 		$this->form_validation->set_rules('firstName', 'First Name', 'required');
@@ -23,7 +25,8 @@ class Contact extends CI_Controller {
 		$this->form_validation->set_rules('message', 'Message', 'required|max_length[255]');
 		
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('contact_page');
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('contact');
 			return;
 		}
 

@@ -5,6 +5,15 @@ $this->load->view('header.php');
 ?>
 
 <main>
+
+	<?php
+	$data = $this->session->flashdata('error');
+	$this->load->view('error_modal', array('error' => $data));
+	if ($data != null) {
+		echo '<script type="text/javascript"> document.getElementById("error-modal").style.display = "block"; </script>';
+	}
+	?>
+	
 	<div class="banner-top">
 		<p>Home <i class="fas fa-arrow-right"></i> Buy From Us</p>
 		<h1>Buy From Us</h1>

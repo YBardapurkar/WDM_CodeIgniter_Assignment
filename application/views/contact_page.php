@@ -7,14 +7,10 @@ $this->load->view('header.php');
 <main>
 
 	<?php
-	$data = array();
-	if (null != validation_errors()) {
-		$data['error'] = validation_errors();
-	}
-	$this->load->view('error_modal', $data);
-	if (null != validation_errors()) {
+	$data = $this->session->flashdata('error');
+	$this->load->view('error_modal', array('error' => $data));
+	if ($data != null) {
 		echo '<script type="text/javascript"> document.getElementById("error-modal").style.display = "block"; </script>';
-		// echo '<script type="text/javascript"> alert("'.validation_errors().'"); </script>';
 	}
 	?>
 

@@ -55,6 +55,14 @@ class Store extends CI_Controller {
 	// POST
 	// add to cart
 	public function add_to_cart() {
+		$this->form_validation->set_rules('quantity', 'Quantity', 'required|greater_than[0]', array('greater_than' => 'Must select atleast 1 quantity'));
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('store');
+			return;
+		}
+
 		$productId = $this->input->post('productId');
 		$quantity = $this->input->post('quantity');
 

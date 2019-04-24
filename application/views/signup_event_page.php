@@ -5,6 +5,15 @@ $this->load->view('header.php');
 ?>
 
 <main>
+
+	<?php
+	$data = $this->session->flashdata('error');
+	$this->load->view('error_modal', array('error' => $data));
+	if ($data != null) {
+		echo '<script type="text/javascript"> document.getElementById("error-modal").style.display = "block"; </script>';
+	}
+	?>
+	
 	<div class="banner-top">
 		<p>Home <i class="fas fa-arrow-right"></i> SIGN UP</p>
 		<h1>SIGN UP</h1>
@@ -48,7 +57,7 @@ $this->load->view('header.php');
 		$data = array('name' => 'lastName', 'placeholder' => 'Enter Last Name', 'type' => 'text');
 		echo form_input($data);
 
-		$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'email');
+		$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'text');
 		echo form_input($data);
 
 		$data = array('name' => 'password', 'placeholder' => 'Enter Password', 'type' => 'password');

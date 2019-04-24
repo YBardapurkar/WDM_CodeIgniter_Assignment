@@ -5,6 +5,15 @@ $this->load->view('header.php');
 ?>
 
 <main>
+
+	<?php
+	$data = $this->session->flashdata('error');
+	$this->load->view('error_modal', array('error' => $data));
+	if ($data != null) {
+		echo '<script type="text/javascript"> document.getElementById("error-modal").style.display = "block"; </script>';
+	}
+	?>
+	
 	<div id="wrapper">
 		<h2 class="center-heading">Welcome to your profile</h2>
 

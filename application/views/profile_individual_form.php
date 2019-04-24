@@ -14,7 +14,7 @@ echo form_input($data);
 $data = array('name' => 'placeOfWork', 'placeholder' => 'Enter Place of Work', 'type' => 'text', 'value' => $row->placeOfWork);
 echo form_input($data);
 
-$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'email', 'disabled' => true, 'value' => $row->email);
+$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'text', 'disabled' => true, 'value' => $row->email);
 echo form_input($data);
 
 echo form_submit('profile_submit', 'Update Profile', 'class="button-color"');

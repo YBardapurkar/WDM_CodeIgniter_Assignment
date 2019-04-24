@@ -22,6 +22,17 @@ class Profile extends CI_Controller {
 	// POST
 	// update individual profile
 	public function update_profile_individual() {
+		$this->form_validation->set_rules('firstName', 'First Name', 'required');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('school', 'School', 'required');
+		$this->form_validation->set_rules('placeOfWork', 'Place of Work', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('profile');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$lastName = $this->input->post("lastName");
 		$school = $this->input->post("school");
@@ -37,6 +48,15 @@ class Profile extends CI_Controller {
 	// POST
 	// update event profile
 	public function update_profile_event() {
+		$this->form_validation->set_rules('firstName', 'First Name', 'required');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('profile');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$lastName = $this->input->post("lastName");
 		$email = $this->input->post("email");
@@ -50,6 +70,15 @@ class Profile extends CI_Controller {
 	// POST
 	// update business profile
 	public function update_profile_business() {
+		$this->form_validation->set_rules('firstName', 'Name', 'required');
+		$this->form_validation->set_rules('businessType', 'Business Type', 'required', array('required' => 'Select a Business Type'));
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('profile');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$businessType = $this->input->post("businessType");
 		$email = $this->input->post("email");
@@ -63,6 +92,15 @@ class Profile extends CI_Controller {
 	// POST
 	// update profile details
 	public function password_reset() {
+		$this->form_validation->set_rules('oldPassword', 'Old Password', 'required');
+		$this->form_validation->set_rules('newPassword', 'New Password', 'required|min_length[5]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('profile');
+			return;
+		}
+
 		$oldPassword = $this->input->post('oldPassword');
 		$newPassword = $this->input->post('newPassword');
 

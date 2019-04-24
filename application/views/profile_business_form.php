@@ -12,7 +12,7 @@ $data = array( 'name' => 'businessType', 'value' => 'company', 'checked' => ($ro
 echo form_radio($data);
 echo form_label('Company', 'businessType');
 
-$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'email', 'disabled' => true, 'value' => $row->email);
+$data = array('name' => 'email', 'placeholder' => 'Enter Email', 'type' => 'text', 'disabled' => true, 'value' => $row->email);
 echo form_input($data);
 
 echo form_submit('profile_submit', 'Update Profile', 'class="button-color"');

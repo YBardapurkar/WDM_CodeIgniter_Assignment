@@ -14,8 +14,18 @@ class Auth extends CI_Controller {
 		redirect('dashboard');
 	}
 
+	// POST
 	// login, set session
 	public function login() {
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array('valid_email' => 'Email is invalid'));
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('login');
+			return;
+		}
+
 		$email = $this->input->post("email");
 		$password = $this->input->post("password");
 
@@ -32,6 +42,7 @@ class Auth extends CI_Controller {
 		}
 	}
 
+	// GET, POST
 	// logout, clear session
 	public function logout() {
 		$this->session->unset_userdata('id');
@@ -45,8 +56,22 @@ class Auth extends CI_Controller {
 		redirect('home');
 	}
 
+	// POST
 	// create new individual user
 	public function signup_individual() {
+		$this->form_validation->set_rules('firstName', 'First Name', 'required');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('school', 'School', 'required');
+		$this->form_validation->set_rules('placeOfWork', 'Place of Work', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array('valid_email' => 'Email is invalid'));
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('signup/individual');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$lastName = $this->input->post("lastName");
 		$school = $this->input->post("school");
@@ -61,8 +86,20 @@ class Auth extends CI_Controller {
 		redirect('login');
 	}
 
+	// POST
 	// create new event user
 	public function signup_event() {
+		$this->form_validation->set_rules('firstName', 'First Name', 'required');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array('valid_email' => 'Email is invalid'));
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('signup/event');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$lastName = $this->input->post("lastName");
 		$email = $this->input->post("email");
@@ -75,8 +112,20 @@ class Auth extends CI_Controller {
 		redirect('login');
 	}
 
+	// POST
 	// create new business user
 	public function signup_business() {
+		$this->form_validation->set_rules('firstName', 'Name', 'required');
+		$this->form_validation->set_rules('businessType', 'Business Type', 'required', array('required' => 'Select a Business Type'));
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array('valid_email' => 'Email is invalid'));
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('signup/business');
+			return;
+		}
+
 		$firstName = $this->input->post("firstName");
 		$businessType = $this->input->post("businessType");
 		$email = $this->input->post("email");

@@ -120,6 +120,17 @@ class Events extends CI_Controller {
 	// POST
 	// add new event (only for event)
 	public function add_event() {
+		$this->form_validation->set_rules('eventName', 'Event Name', 'required');
+		$this->form_validation->set_rules('eventDate', 'Event Date', 'required');
+		$this->form_validation->set_rules('eventVenue', 'Event Venue', 'required');
+		$this->form_validation->set_rules('eventDescription', 'Description', 'required|max_length[255]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('events/new');
+			return;
+		}
+
 		if ($this->session->userdata('role') != 'event') {
 			redirect('events/my');
 			return;
@@ -141,6 +152,18 @@ class Events extends CI_Controller {
 	// update event (only for event)
 	public function update_event() {
 		$eventId = $this->input->post('eventId');
+
+		$this->form_validation->set_rules('eventName', 'Event Name', 'required');
+		$this->form_validation->set_rules('eventDate', 'Event Date', 'required');
+		$this->form_validation->set_rules('eventVenue', 'Event Venue', 'required');
+		$this->form_validation->set_rules('eventDescription', 'Description', 'required|max_length[255]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('events/update/'.$eventId);
+			return;
+		}
+
 		if ($this->session->userdata('role') != 'event') {
 			redirect('events/my');
 			return;

@@ -73,6 +73,15 @@ class Businesses extends CI_Controller {
 	// POST
 	// add new business (only for business)
 	public function add_business() {
+		$this->form_validation->set_rules('businessName', 'Business Name', 'required');
+		$this->form_validation->set_rules('businessDescription', 'Description', 'required|max_length[255]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('businesses/new');
+			return;
+		}
+
 		if ($this->session->userdata('role') != 'business') {
 			redirect('businesses/my');
 			return;
@@ -91,6 +100,16 @@ class Businesses extends CI_Controller {
 	// update business (only for business)
 	public function update_business() {
 		$businessId = $this->input->post('businessId');
+
+		$this->form_validation->set_rules('businessName', 'Business Name', 'required');
+		$this->form_validation->set_rules('businessDescription', 'Description', 'required|max_length[255]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('businesses/update/'.$businessId);
+			return;
+		}
+
 		if ($this->session->userdata('role') != 'business') {
 			redirect('businesses/my');
 			return;

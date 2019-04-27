@@ -58,24 +58,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script>
 // Get the modal
-var modal = document.getElementById('success-modal');
+var success_modal = document.getElementById('success-modal');
 
 // Get the <span> element that closes the modal
-var span = document.getElementById('success-modal-close');
+var success_span = document.getElementById('success-modal-close');
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-	modal.style.display = "none";
+success_span.onclick = function() {
+	success_modal_close();
 }
 
-function modal_open() {
-	modal.style.display = "block";
+function success_modal_open() {
+	success_modal.style.display = "block";
+}
+function success_modal_close() {
+	success_modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
+	if (event.target == success_modal) {
+		success_modal_close();
 	}
 }
 </script>

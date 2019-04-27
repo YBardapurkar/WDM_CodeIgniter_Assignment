@@ -5,6 +5,11 @@ $this->load->view('header.php');
 ?>
 
 <main>
+
+	<?php
+	$this->load->view('load_modals');
+	?>
+	
 	<div id="wrapper">
 		<h2>List of Businesses</h2>
 

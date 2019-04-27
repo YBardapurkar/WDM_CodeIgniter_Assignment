@@ -42,6 +42,7 @@ class Profile extends CI_Controller {
 		$id = $this->session->userdata('id');
 
 		$this->User_model->update_profile_individual($id, $firstName, $lastName, $school, $placeOfWork);
+		$this->session->set_flashdata('success', '<p>Profile Updated</p>');
 		redirect('profile');
 	}
 
@@ -64,6 +65,7 @@ class Profile extends CI_Controller {
 		$id = $this->session->userdata('id');
 
 		$this->User_model->update_profile_event($id, $firstName, $lastName);
+		$this->session->set_flashdata('success', '<p>Profile Updated</p>');
 		redirect('profile');
 	}
 
@@ -86,6 +88,7 @@ class Profile extends CI_Controller {
 		$id = $this->session->userdata('id');
 
 		$this->User_model->update_profile_business($id, $firstName, $businessType);
+		$this->session->set_flashdata('success', '<p>Profile Updated</p>');
 		redirect('profile');
 	}
 
@@ -109,10 +112,13 @@ class Profile extends CI_Controller {
 		$user = $this->User_model->login($email);
 
 		if (password_verify($oldPassword, $user->password)) {
-			$this->User_model->password_reset($id, $newPassword);
+			$hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
+			$this->User_model->password_reset($user->id, $hashed_password);
+			$this->session->set_flashdata('success', '<p>Password has been reset</p>');
 			redirect('profile');
 		} else {
-			echo 'fail';
+			$this->session->set_flashdata('error', '<p>Incorrect Password</p>');
+			redirect('profile');
 		}
 	}
 

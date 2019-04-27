@@ -60,6 +60,7 @@ class Auth extends CI_Controller {
 
 		$this->session->sess_destroy();
 
+		$this->session->set_flashdata('success', '<p>Logged Out</p>');
 		redirect('home');
 	}
 
@@ -90,6 +91,7 @@ class Auth extends CI_Controller {
 
 		$this->User_model->signup_individual($firstName, $lastName, $school, $placeOfWork, $email, $hashed_password);
 
+		$this->session->set_flashdata('success', '<p>Individual User Created</p>');
 		redirect('login');
 	}
 
@@ -116,6 +118,7 @@ class Auth extends CI_Controller {
 
 		$this->User_model->signup_event($firstName, $lastName, $email, $hashed_password);
 
+		$this->session->set_flashdata('success', '<p>Event User Created</p>');
 		redirect('login');
 	}
 
@@ -142,6 +145,7 @@ class Auth extends CI_Controller {
 
 		$this->User_model->signup_business($firstName, $businessType, $email, $hashed_password);
 
+		$this->session->set_flashdata('success', '<p>Business User Created</p>');
 		redirect('login');
 	}
 

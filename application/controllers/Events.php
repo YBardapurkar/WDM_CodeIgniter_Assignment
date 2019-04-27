@@ -145,6 +145,8 @@ class Events extends CI_Controller {
 		$timestamp = strtotime($eventDate);
 
 		$this->Events_model->add_event($eventName, date('Y-m-d', $timestamp), $eventVenue, $eventDescription, $createdBy);
+
+		$this->session->set_flashdata('success', '<p>New Event Added</p>');
 		redirect('events/my');
 	}
 
@@ -177,6 +179,8 @@ class Events extends CI_Controller {
 		$timestamp = strtotime($eventDate);
 
 		$this->Events_model->update_event($eventId, $eventName, date('Y-m-d', $timestamp), $eventVenue, $eventDescription);
+
+		$this->session->set_flashdata('success', '<p>Event Updated</p>');
 		redirect('events/my');
 	}
 
@@ -190,6 +194,8 @@ class Events extends CI_Controller {
 		}
 
 		$this->Events_model->delete_event($eventId);
+
+		$this->session->set_flashdata('success', '<p>Event Deleted</p>');
 		redirect('events/my');
 	}
 }

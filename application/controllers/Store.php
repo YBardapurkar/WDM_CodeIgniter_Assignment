@@ -104,8 +104,10 @@ class Store extends CI_Controller {
 
 		if ($res) {
 			$this->session->unset_userdata('cart');
+			$this->session->set_flashdata('success', '<p>Your order has been placed</p>');
 			redirect('store');
 		} else {
+			$this->session->set_flashdata('error', '<p>Error placing order</p>');
 			redirect('store/order');
 		}
 	}

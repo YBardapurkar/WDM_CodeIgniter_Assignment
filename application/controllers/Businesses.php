@@ -93,6 +93,8 @@ class Businesses extends CI_Controller {
 		$createdBy = $this->session->userdata('id');
 
 		$this->Businesses_model->add_business($businessName, $businessDescription, $createdBy);
+
+		$this->session->set_flashdata('success', '<p>New Business Added</p>');
 		redirect('businesses/my');
 	}
 
@@ -119,6 +121,8 @@ class Businesses extends CI_Controller {
 		$businessDescription = $this->input->post('businessDescription');
 
 		$this->Businesses_model->update_business($businessId, $businessName, $businessDescription);
+
+		$this->session->set_flashdata('success', '<p>Business Updated</p>');
 		redirect('businesses/my');
 	}
 
@@ -132,6 +136,8 @@ class Businesses extends CI_Controller {
 		}
 
 		$this->Businesses_model->delete_business($businessId);
+
+		$this->session->set_flashdata('success', '<p>Business Deleted</p>');
 		redirect('businesses/my');
 	}
 }

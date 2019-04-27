@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		background-color: #f0fff0;
 		margin: auto;
 		padding: 20px;
-		border: 1px solid #888;
+		border: 1px solid #004400;
 		width: 40%;
 	}
 
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	/* The Close Button */
 	.success-modal-close {
-		color: #aaaaaa;
+		color: #007700;
 		float: right;
 		font-size: 28px;
 		font-weight: bold;
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	.success-modal-close:hover,
 	.success-modal-close:focus {
-		color: #000;
+		color: #004400;
 		text-decoration: none;
 		cursor: pointer;
 	}

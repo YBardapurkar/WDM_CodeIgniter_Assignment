@@ -22,11 +22,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	/* Modal Content */
 	.error-modal-content {
-		background-color: #fefefe;
+		background-color: #fff0f0;
 		margin: auto;
 		padding: 20px;
 		border: 1px solid #888;
 		width: 40%;
+	}
+
+	.error-modal-content p {
+		color: #440000;
 	}
 
 	/* The Close Button */

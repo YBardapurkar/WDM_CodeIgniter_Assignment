@@ -69,13 +69,18 @@ class Events extends CI_Controller {
 
 	// GET
 	// load 'edit event' page
-	public function update($eventId) {
+	public function update($eventId = null) {
 		if (!$this->session->has_userdata('role')){
 			redirect('login');
 			return;
 		}
 		if ($this->session->userdata('role') != 'event') {
-			redirect('login');
+			redirect('events');
+			return;
+		}
+		if ($eventId == null) {
+			$this->session->set_flashdata('error', '<p>Event not found</p>');
+			redirect('events/my');
 			return;
 		}
 		$event = $this->Events_model->get_event($eventId);
@@ -95,9 +100,11 @@ class Events extends CI_Controller {
 		$userId = $this->session->userdata('id');
 
 		if ($this->Events_model->check_if_confirmed($userId, $eventId)) {
+			$this->session->set_flashdata('error', '<p>Already confirmed this event</p>');
 			redirect('events');
 		} else {
 			$this->Events_model->confirm_event($userId, $eventId);
+			$this->session->set_flashdata('success', '<p>Event Confirmed</p>');
 			redirect('events/my');
 		}
 	}
@@ -114,6 +121,7 @@ class Events extends CI_Controller {
 		$userId = $this->session->userdata('id');
 
 		$this->Events_model->remove_event($userId, $eventId);
+		$this->session->set_flashdata('success', '<p>Event Removed</p>');
 		redirect('events/my');
 	}
 

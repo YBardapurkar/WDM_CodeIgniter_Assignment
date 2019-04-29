@@ -56,13 +56,18 @@ class Businesses extends CI_Controller {
 
 	// GET
 	// load 'edit business' page
-	public function update($businessId) {
+	public function update($businessId = null) {
 		if (!$this->session->has_userdata('role')){
 			redirect('login');
 			return;
 		}
 		if ($this->session->userdata('role') != 'business') {
-			redirect('login');
+			redirect('businesses');
+			return;
+		}
+		if ($businessId == null) {
+			$this->session->set_flashdata('error', '<p>Business not found</p>');
+			redirect('businesses/my');
 			return;
 		}
 		$business = $this->Businesses_model->get_business($businessId);

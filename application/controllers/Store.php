@@ -80,6 +80,23 @@ class Store extends CI_Controller {
 	// POST
 	// place order
 	public function place_order() {
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array('valid_email' => 'Email is invalid'));
+		$this->form_validation->set_rules('firstName', 'First Name', 'required');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('address', 'Address', 'required');
+		$this->form_validation->set_rules('apartment', 'Apartment', 'required');
+		$this->form_validation->set_rules('city', 'City', 'required');
+		$this->form_validation->set_rules('state', 'State', 'required');
+		$this->form_validation->set_rules('language', 'Language', 'required');
+		$this->form_validation->set_rules('zip', 'Postal Code', 'required|regex_match[/^[0-9]{5}$/]', array('regex_match' => 'Postal Code must have 5 digits'));
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('store/order');
+			return;
+		}
+
+
 		$email = $this->input->post('email');
 		$firstName = $this->input->post('firstName');
 		$lastName = $this->input->post('lastName');
